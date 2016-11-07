@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Quilty!</title>
+    <link rel="stylesheet" href="../css/style.css">
+ <style type="text/css">
+<script src="http://your-io-server/socket.io/socket.io.js"></script>
+ body{
+   background-image:url('http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/seigaiha.png');
+   background-size:contain;
+ }
+
+
+h1{
+  font-family:sans-serif;
+  font-size:30;
+  color:#b57417;
+
+}
+
+.weenmode{
+position:absolute;
+left:0;
+top:0;
+width:15%;
+height:100px;
+background-color:orange;
+opacity:0.5;
+z-index:2000;
+
+}
+.top{
+position:absolute;
+left:0;
+top:0;
+width:100%;
+height:100px;
+background-color:white;
+opacity:0.5;
+z-index:1000;
+
+}
+.qwilty{
+  position:absolute;
+  z-index:100;
+  width:100px;
+  height:100px;
+  margin-left:35%;
+  margin-top:40%;
+  background-color:blue;
+
+
+
+}
+ .eniro{
+                     position:relative;
+                     z-index:10;
+                     height:222px;
+                     width:50%;
+                     overflow:hidden;
+                     float:left;
+                 }
+
+
+ .frontlayer{
+   width:100px;
+   height:100px;
+   position:absolute;
+   left:10;
+   right:10;
+   z-index:1000;
+
+ }
+
+ .kanvas{
+   width:25%;
+   height:25%;
+   float:left;
+ }
+
+ .kanvasbody{
+   width:100%;
+   height:100%;
+   float:left;
+ }
+
+ .kanvasback{
+   width:100%;
+   height:100%;
+   position:absolute;
+   z-index:1;
+   background-color:red;
+ }
+
+</style>
+
+
+    <script type="text/javascript" src="../../dist/paper-full.js">
+
+
+
+
+
+
+    </script>
+
+    <script type="text/paperscript" canvas="canvas">
+
+
+
+
+    //var randomimage = new Raster({
+      //source = /images,Math.random()Math.round().jpg'
+      //
+    //})\"" + Math.floor ( 1 + Math.random() * 10 ) + ".jpg\"
+
+
+
+//var raster = new Raster({
+//source: + Math.floor (1 + Math.random() * 16) + ".jpg",
+//position: event.point
+//});
+
+//raster.scale(0.5)
+//path.opacity = 1.0;
+//;
+            function onMouseDown(event) {
+
+
+
+
+
+
+    //          var raster = new Raster({
+      //        source: + Math.floor (1 + Math.random() * 16) + ".jpg",
+    //          position: event.point
+  //            });
+
+  //            path.opacity = 1.0;
+//              raster.bounds.selected = true;
+//              ;
+
+
+  //            var raster = new Raster(image);
+
+              // Move the image to the center of the view:
+//              raster.position = event.point;
+  //            raster.rotate(delta.angle);
+  //            raster.removeOnDrag();
+  //            path.rotate(delta.angle);
+      //        path.removeOnDrag();
+      //        Raster.removeOnDrag();
+
+
+
+
+                var hue = Math.random() * 360;
+                project.currentStyle.fillColor = {
+                    hue: hue,
+                    saturation: 1,
+                    brightness: 1
+                };
+
+                ;
+            }
+
+            function onMouseDrag(event) {
+              var delta = event.point - event.downPoint;
+                var rectangle = new Rectangle
+                (new Point(event.point,event.point),
+                new Size(delta.length,delta.height)
+
+
+
+
+              );
+
+
+
+
+//cutoutshape//
+
+
+function imgClip(image, x, y, radius) {
+       var scratchCanvas = document.getElementById('scratch');
+       scratchCanvas.width = radius*2;
+       scratchCanvas.height = radius*2;
+       var scratchCtx = scratchCanvas.getContext('2d');
+
+
+       //drawing code
+       scratchCtx.clearRect(20, 20, scratchCanvas.width, scratchCanvas.height);
+       scratchCtx.globalCompositeOperation = 'source-over'; //default
+       //Do whatever drawing you want. In your case, draw your image.
+       scratchCtx.drawImage(image, 20,20);
+
+       //As long as we can represent our clipping region as a single path,
+       //we can perform our clipping by using a non-default composite operation.
+       //You can think of destination-in as "write alpha". It will not touch
+       //the color channel of the canvas, but will replace the alpha channel.
+       //(Actually, it will multiply the already drawn alpha with the alpha
+       //currently being drawn - meaning that things look good where two anti-
+       //aliased pixels overlap.)
+       //
+       //If you can't represent the clipping region as a single path, you can
+       //always draw your clip shape into yet another scratch canvas.
+
+       scratchCtx.fillStyle = '#fff'; //color doesn't matter, but we want full opacity
+       scratchCtx.globalCompositeOperation = 'destination-in';
+       scratchCtx.beginPath();
+       scratchCtx.arc(x, y, radius, 0, 2 * Math.PI, true);
+       scratchCtx.closePath();
+       scratchCtx.fill();
+       return scratchCanvas;
+     }
+
+     var img = new Image();
+     img.src = + Math.floor (1 + Math.random() * 16) + ".jpg";
+     var x = delta.length;
+     var y = 200;
+     var radius = 200;
+
+
+     img.onload = function() {
+       var image = imgClip(img, x, y, radius);
+       // Load from Server:
+       var raster = new Raster(image);
+       raster.removeOnDrag();
+       // Move the image to the center of the view:
+       raster.position = event.point;
+       raster.rotate(delta.angle);
+       raster.size(delta.length,delta.height)
+       raster.bounds.selected = true;
+       raster.opacity = 1.0;
+     }
+
+
+
+//d
+
+
+
+
+//rectangle//
+
+
+
+                var path = new Path.Rectangle(rectangle);
+                selected:true;
+                path.bounds.selected = true;
+                path.strokeColor = 'black';
+                path.strokeWidth = '40';
+                path.dashArray = [10,12]
+                path.rotate(delta.angle);
+                // Remove the path automatically before the next mouse drag
+                // event:
+                path.removeOnDrag();
+                image.removeOnDrag()
+                imgClip.removeOnDrag();
+
+                path.opacity = 0.8;
+
+                if (hitResult) {
+                    path = hitResult.item;
+                    if (hitResult.type == 'segment') {
+                        segment = hitResult.segment;
+                    } else if (hitResult.type == 'stroke') {
+                        var location = hitResult.location;
+                        segment = path.insert(location.index + 1, event.point);
+                        path.smooth();
+                    }
+                }
+
+            }
+
+
+
+window.app = {
+
+}
+
+    </script>
+
+
+
+
+
+
+<script type="text/javascript" src="../../dist/paper-full.js">
+
+
+
+
+</script>
+
+<script type="text/paperscript" canvas="canvas2">
+
+
+        function onMouseDown(event) {
+
+
+
+
+
+
+
+            var hue = Math.random() * 360;
+            project.currentStyle.fillColor = {
+                hue: hue,
+                saturation: 1,
+                brightness: 1
+            };
+
+            ;
+        }
+
+        function onMouseDrag(event) {
+          var delta = event.point - event.downPoint;
+            var rectangle = new Rectangle
+            (new Point(event.point,event.point),
+            new Size(delta.length,delta.height)
+
+
+
+
+          );
+
+
+
+//Canvas2//
+//experiment//
+
+
+function imgClip2(image, x, y, radius) {
+   var scratchCanvas2 = document.getElementById('scratch2');
+   scratchCanvas2.width = radius*2;
+   scratchCanvas2.height = radius*2;
+   var scratchCtx2 = scratchCanvas2.getContext('2d');
+
+
+   //drawing code
+   scratchCtx2.clearRect(20, 20, scratchCanvas2.width, scratchCanvas2.height);
+   scratchCtx2.globalCompositeOperation = 'source-over'; //default
+   //Do whatever drawing you want. In your case, draw your image.
+   scratchCtx2.drawImage(image, 20,20);
+
+
+
+   scratchCtx2.fillStyle = '#fff'; //color doesn't matter, but we want full opacity
+   scratchCtx2.globalCompositeOperation = 'destination-in';
+   scratchCtx2.beginPath();
+   scratchCtx2.arc(x, y, radius, 0, 2 * Math.PI, true);
+   scratchCtx2.closePath();
+   scratchCtx2.fill();
+   return scratchCanvas2;
+ }
+
+ var img = new Image();
+ img.src = + Math.floor (1 + Math.random() * 16) + ".jpg";
+ var x = delta.length;
+ var y = 200;
+ var radius = 200;
+
+
+ img.onload = function() {
+   var image = imgClip(img, x, y, radius);
+   // Load from Server:
+   var raster2 = new Raster(image);
+   raster2.removeOnDrag();
+   // Move the image to the center of the view:
+   raster2.position = event.point;
+   raster2.rotate(delta.angle);
+   raster2.size(delta.length,delta.height)
+   raster2.bounds.selected = true;
+   raster2.opacity = 1.0;
+ }
+
+
+
+//d
+
+
+
+
+//
+
+
+
+            var path = new Path.Rectangle(rectangle);
+            selected:true;
+            path.bounds.selected = true;
+            path.strokeColor = 'black';
+            path.strokeWidth = '40';
+            path.dashArray = [10,12]
+            path.rotate(delta.angle);
+            // Remove the path automatically before the next mouse drag
+            // event:
+            path.removeOnDrag();
+            image.removeOnDrag()
+            imgClip.removeOnDrag();
+
+            path.opacity = 0.8;
+
+            if (hitResult) {
+                path = hitResult.item;
+                if (hitResult.type == 'segment') {
+                    segment = hitResult.segment;
+                } else if (hitResult.type == 'stroke') {
+                    var location = hitResult.location;
+                    segment = path.insert(location.index + 1, event.point);
+                    path.smooth();
+                }
+            }
+
+        }
+
+
+
+window.app = {
+
+}
+
+</script>
+
+
+
+
+
+
+
+
+
+
+<script type="text/paperscript" canvas="canvas2">
+
+
+    function onMouseDown(event) {
+
+
+
+
+
+
+
+
+
+
+        var hue = Math.random() * 360;
+        project.currentStyle.fillColor = {
+            hue: hue,
+            saturation: 1,
+            brightness: 1
+        };
+
+        ;
+    }
+
+    function onMouseDrag(event) {
+      var delta = event.point - event.downPoint;
+        var rectangle = new Rectangle
+        (new Point(event.point,event.point),
+        new Size(delta.length,delta.height)
+
+
+
+
+      );
+
+
+
+
+//imageclipping//
+
+
+function imgClip2(image, x, y, radius) {
+var scratchCanvas2 = document.getElementById('scratch2');
+scratchCanvas2.width = radius*2;
+scratchCanvas2.height = radius*2;
+var scratchCtx2 = scratchCanvas2.getContext('2d');
+
+
+//drawing code
+scratchCtx2.clearRect(20, 20, scratchCanvas2.width, scratchCanvas2.height);
+scratchCtx2.globalCompositeOperation = 'source-over'; //default
+//Do whatever drawing you want. In your case, draw your image.
+scratchCtx2.drawImage(image, 20,20);
+
+//As long as we can represent our clipping region as a single path,
+//we can perform our clipping by using a non-default composite operation.
+//You can think of destination-in as "write alpha". It will not touch
+//the color channel of the canvas, but will replace the alpha channel.
+//(Actually, it will multiply the already drawn alpha with the alpha
+//currently being drawn - meaning that things look good where two anti-
+//aliased pixels overlap.)
+//
+//If you can't represent the clipping region as a single path, you can
+//always draw your clip shape into yet another scratch canvas.
+
+scratchCtx2.fillStyle = '#fff'; //color doesn't matter, but we want full opacity
+scratchCtx2.globalCompositeOperation = 'destination-in';
+scratchCtx2.beginPath();
+scratchCtx2.arc(x, y, radius, 0, 2 * Math.PI, true);
+scratchCtx2.closePath();
+scratchCtx2.fill();
+return scratchCanvas2;
+}
+
+var img2 = new Image();
+img.src = + Math.floor (1 + Math.random() * 16) + ".jpg";
+var x = delta.length;
+var y = 200;
+var radius = 200;
+
+
+img2.onload = function() {
+var image2 = imgClip2(img, x, y, radius);
+// Load from Server:
+var raster2 = new Raster(image);
+raster2.removeOnDrag();
+// Move the image to the center of the view:
+raster2.position = event.point;
+raster2.rotate(delta.angle);
+raster2.size(delta.length,delta.height)
+raster2.bounds.selected = true;
+raster2.opacity = 1.0;
+}
+
+
+
+
+
+//rectanges//
+
+
+
+        var path = new Path.Rectangle(rectangle);
+        selected:true;
+        path.bounds.selected = true;
+        path.strokeColor = 'black';
+        path.strokeWidth = '40';
+        path.dashArray = [10,12]
+        path.rotate(delta.angle);
+        // Remove the path automatically before the next mouse drag
+        // event:
+        path.removeOnDrag();
+        image.removeOnDrag()
+        imgClip.removeOnDrag();
+
+        path.opacity = 0.8;
+
+        if (hitResult) {
+            path = hitResult.item;
+            if (hitResult.type == 'segment') {
+                segment = hitResult.segment;
+            } else if (hitResult.type == 'stroke') {
+                var location = hitResult.location;
+                segment = path.insert(location.index + 1, event.point);
+                path.smooth();
+            }
+        }
+
+    }
+
+
+
+window.app = {
+
+}
+
+</script>
+
+
+
+
+</head>
+<a href="halloweenmode.html">
+<div class="weenmode">
+
+  <h1>
+    Halloween <br>
+    mode!
+  </h1>
+</div>
+</a>
+
+
+
+
+  <body onload="gameLoop()" onkeydown="" onkeyup="" bgcolor='white'>
+
+    <link rel="stylesheet" href="http://www.jacklmoore.com/colorbox/example1/colorbox.css" />
+     </head>
+     <body>
+
+
+       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+       <script src="http://www.jacklmoore.com/colorbox/jquery.colorbox.js"></script>
+       <script>
+         function openColorBox(){
+           $.colorbox({iframe:true, width:"80%", height:"80%", href: "welcome.html"});
+         }
+
+         function countDown(){
+           seconds--
+           $("#seconds").text(seconds);
+           if (seconds === 0){
+             openColorBox();
+             clearInterval(i);
+           }
+         }
+
+         var seconds = 1,
+             i = setInterval(countDown, 1000);
+       </script>
+
+
+
+<div class="kanvasbody">
+
+
+
+<div class="eniro">
+            <iframe style="margin-top:0px; margin-left:0 ;" height="450" width="1650" frameBorder="0" src="repeaty.html">
+            </iframe>
+            </div>
+<div class="eniro">
+            <iframe style="margin-top:0px; margin-left:0 ;" height="450" width="1650"  frameBorder="0"src="testsunday.html">
+            </iframe>
+            </div>
+
+            <div class="eniro">
+                        <iframe style="margin-top:0px; margin-left:0 ;" height="450" width="1650" frameBorder="0" src="stars100.html">
+                        </iframe>
+                        </div>
+                        <div class="eniro">
+                                    <iframe style="margin-top:0px; margin-left:0 ;" height="450" width="1650" frameBorder="0" src="psychedellic.html">
+                                    </iframe>
+                                    </div>
+                                    <div class="eniro">
+                                                <iframe style="margin-top:0px; margin-left:0 ;" height="450" width="1650"  frameBorder="0" src="repeaty.html">
+                                                </iframe>
+                                                </div>
+                                                <div class="eniro">
+                                                            <iframe style="margin-top:0px; margin-left:0 ;" height="450" width="1650" frameBorder="0" src="testsunday.html">
+                                                            </iframe>
+                                                            </div>
+                                                            <div class="eniro">
+                                                                        <iframe style="margin-top:0px; margin-left:0 ;" height="450" width="1650" frameBorder="0" src="midimage.html">
+                                                                        </iframe>
+                                                                        </div>
+                                                                        <div class="eniro">
+                                                                                    <iframe style="margin-top:0px; margin-left:0 ;" height="450" width="1650" frameBorder="0" src="testsunday.html">
+                                                                                    </iframe>
+                                                                                    </div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Squares!</title>
+    <link rel="stylesheet" href="../css/style.css">
+ <style type="text/css">
+
+ body{
+   background-image:url('http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/seigaiha.png');
+   background-size:contain;
+ }
+
+ .frontlayer{
+   background-color:red;
+   width:100px;
+   height:100px;
+   position:absolute;
+   left:10;
+   right:10;
+   z-index:1000;
+
+ }
+
+</style>
+
+
+    <script type="text/javascript" src="../../dist/paper-full.js">
+
+
+
+
+
+
+    </script>
+
+    <script type="text/paperscript" canvas="canvas">
+
+
+
+
+    //var randomimage = new Raster({
+      //source = /images,Math.random()Math.round().jpg'
+      //
+    //})\"" + Math.floor ( 1 + Math.random() * 10 ) + ".jpg\"
+
+
+
+//var raster = new Raster({
+//source: + Math.floor (1 + Math.random() * 16) + ".jpg",
+//position: event.point
+//});
+
+//raster.scale(0.5)
+//path.opacity = 1.0;
+//;
+            function onMouseDown(event) {
+
+
+              var raster = new Raster({
+              source: + Math.floor (1 + Math.random() * 16) + ".jpg",
+              position: event.point
+              });
+
+              raster.scale(0.5)
+              path.opacity = 1.0;
+              ;
+
+
+
+
+                var hue = Math.random() * 360;
+                project.currentStyle.fillColor = {
+                    hue: hue,
+                    saturation: 1,
+                    brightness: 1
+                };
+
+                ;
+            }
+
+            function onMouseDrag(event) {
+              var delta = event.point - event.downPoint;
+                var rectangle = new Rectangle
+                (new Point(event.point,event.point),
+                new Size(delta.length,delta.height)
+
+              );
+
+
+
+                var path = new Path.Rectangle(rectangle);
+                    selected:true;
+                path.bounds.selected = true;
+                path.strokeColor = 'black';
+                path.strokeWidth = '40';
+                path.dashArray = [10,12]
+                path.rotate(delta.angle);
+                // Remove the path automatically before the next mouse drag
+                // event:
+                path.removeOnDrag();
+                path.opacity = 1.0;
+
+                if (hitResult) {
+                    path = hitResult.item;
+                    if (hitResult.type == 'segment') {
+                        segment = hitResult.segment;
+                    } else if (hitResult.type == 'stroke') {
+                        var location = hitResult.location;
+                        segment = path.insert(location.index + 1, event.point);
+                        path.smooth();
+                    }
+                }
+
+            }
+window.app = {
+
+}
+
+    </script>
+</head>
+  <body onload="gameLoop()" onkeydown="" onkeyup="" bgcolor='white'>
+
+
+<a href="#"onclick="activatecircles.activate(); return false;">Triangles</a>
+<a href="#"onclick="activatesquares.activate();">Squares</a>
+<a href="#" onclick="activatedrag.activate()">Circles</a>
+
+        <canvas id="canvas" resize>
+
+
+
+
+
+
+
+
+    </canvas>
+
+
+</body>
+</html>

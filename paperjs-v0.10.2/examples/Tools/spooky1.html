@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Squares!</title>
+    <link rel="stylesheet" href="../css/style.css">
+ <style type="text/css">
+
+ body{
+   background-image:url('http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/seigaiha.png');
+   background-size:contain;
+ }
+
+ .frontlayer{
+   background-color:red;
+   width:100px;
+   height:100px;
+   position:absolute;
+   left:10;
+   right:10;
+   z-index:1000;
+
+ }
+
+
+
+</style>
+
+
+    <script type="text/javascript" src="../../dist/paper-full.js">
+
+
+
+
+
+
+    </script>
+
+    <script type="text/paperscript" canvas="canvas">
+
+
+
+
+    //var randomimage = new Raster({
+      //source = /images,Math.random()Math.round().jpg'
+      //
+    //})\"" + Math.floor ( 1 + Math.random() * 10 ) + ".jpg\"
+
+
+
+//var raster = new Raster({
+//source: + Math.floor (1 + Math.random() * 16) + ".jpg",
+//position: event.point
+//});
+
+//raster.scale(0.5)
+//path.opacity = 1.0;
+//;
+            function onMouseDown(event) {
+
+
+
+
+
+
+    //          var raster = new Raster({
+      //        source: + Math.floor (1 + Math.random() * 16) + ".jpg",
+    //          position: event.point
+  //            });
+
+  //            path.opacity = 1.0;
+//              raster.bounds.selected = true;
+//              ;
+
+
+  //            var raster = new Raster(image);
+
+              // Move the image to the center of the view:
+//              raster.position = event.point;
+  //            raster.rotate(delta.angle);
+  //            raster.removeOnDrag();
+  //            path.rotate(delta.angle);
+      //        path.removeOnDrag();
+      //        Raster.removeOnDrag();
+
+
+
+
+                var hue = Math.random() * 360;
+                project.currentStyle.fillColor = {
+                    hue: hue,
+                    saturation: 1,
+                    brightness: 1
+                };
+
+                ;
+            }
+
+            function onMouseDrag(event) {
+              var delta = event.point - event.downPoint;
+                var rectangle = new Rectangle
+                (new Point(event.point,event.point),
+                new Size(delta.length,delta.height)
+
+
+
+
+              );
+
+
+
+
+//experiment//
+
+
+function imgClip(image, x, y, radius) {
+       var scratchCanvas = document.getElementById('scratch');
+       scratchCanvas.width = radius*2;
+       scratchCanvas.height = radius*2;
+       var scratchCtx = scratchCanvas.getContext('2d');
+
+
+       //drawing code
+       scratchCtx.clearRect(20, 20, scratchCanvas.width, scratchCanvas.height);
+       scratchCtx.globalCompositeOperation = 'source-over'; //default
+       //Do whatever drawing you want. In your case, draw your image.
+       scratchCtx.drawImage(image, 20,20);
+
+       //As long as we can represent our clipping region as a single path,
+       //we can perform our clipping by using a non-default composite operation.
+       //You can think of destination-in as "write alpha". It will not touch
+       //the color channel of the canvas, but will replace the alpha channel.
+       //(Actually, it will multiply the already drawn alpha with the alpha
+       //currently being drawn - meaning that things look good where two anti-
+       //aliased pixels overlap.)
+       //
+       //If you can't represent the clipping region as a single path, you can
+       //always draw your clip shape into yet another scratch canvas.
+
+       scratchCtx.fillStyle = '#fff'; //color doesn't matter, but we want full opacity
+       scratchCtx.globalCompositeOperation = 'destination-in';
+       scratchCtx.beginPath();
+       scratchCtx.arc(x, y, radius, 0, 2 * Math.PI, true);
+       scratchCtx.closePath();
+       scratchCtx.fill();
+       return scratchCanvas;
+     }
+
+     var img = new Image();
+     img.src ="spook1.jpg";
+     var x = delta.length;
+     var y = 200;
+     var radius = 200;
+
+
+     img.onload = function() {
+       var image = imgClip(img, x, y, radius);
+       // Load from Server:
+       var raster = new Raster(image);
+       raster.removeOnDrag();
+       // Move the image to the center of the view:
+       raster.position = event.point;
+       raster.rotate(delta.angle);
+       raster.size(delta.length,delta.height)
+       raster.bounds.selected = true;
+       path.removeOnDrag();
+       Raster.removeOnDrag();
+       imgClip.removeOnDrag();
+       image.removeOnDrag();
+       raster.opacity = 1.0;
+     }
+
+
+
+
+
+
+
+                var path = new Path.Rectangle(rectangle);
+                    selected:true;
+                path.bounds.selected = true;
+                path.strokeColor = 'black';
+                path.strokeWidth = '40';
+                path.dashArray = [10,12]
+                path.rotate(delta.angle);
+                // Remove the path automatically before the next mouse drag
+                // event:
+                path.removeOnDrag();
+                image.removeOnDrag();
+                imgClip.removeOnDrag();
+
+                path.opacity = 0.8;
+
+                if (hitResult) {
+                    path = hitResult.item;
+                    if (hitResult.type == 'segment') {
+                        segment = hitResult.segment;
+                    } else if (hitResult.type == 'stroke') {
+                        var location = hitResult.location;
+                        segment = path.insert(location.index + 1, event.point);
+                        path.smooth();
+                    }
+                }
+
+            }
+
+
+
+window.app = {
+
+}
+
+    </script>
+</head>
+  <body onload="gameLoop()" onkeydown="" onkeyup="" bgcolor='white'>
+
+
+
+
+        <canvas id="canvas" resize>
+
+
+
+
+
+    </canvas>
+
+    <canvas id="scratch" width ="25%" height="25%" resize>
+
+    </canvas>
+    <canvas id="scratch" width ="25%" height="25%" resize>
+
+    </canvas>  <canvas id="scratch" width ="25%" height="25%" resize>
+
+      </canvas>  <canvas id="scratch" width ="25%" height="25%" resize>
+
+        </canvas>  <canvas id="scratch" width ="25%" height="25%" resize>
+
+          </canvas>  <canvas id="scratch" width ="25%" height="25%" resize>
+
+            </canvas>
+
+
+
+</body>
+</html>

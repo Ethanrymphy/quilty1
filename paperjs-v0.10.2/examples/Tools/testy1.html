@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Animated Star</title>
+	<script type="text/javascript" src="http://labrador.is/media/paper.js"></script>
+	<script type="text/javascript" src="http://sole.github.com/tween.js/build/tween.min.js"></script>
+	<script type="text/javascript" src="http://sole.github.com/tween.js/examples/js/RequestAnimationFrame.js"></script>
+	<script type="text/paperscript" canvas="canvas">
+      function imgClip(image, x, y, radius) {
+        var scratchCanvas = document.getElementById('scratch');
+        scratchCanvas.width = radius*2;
+        scratchCanvas.height = radius*2;
+        var scratchCtx = scratchCanvas.getContext('2d');
+
+        //drawing code
+        scratchCtx.clearRect(0, 0, scratchCanvas.width, scratchCanvas.height);
+        scratchCtx.globalCompositeOperation = 'source-over'; //default
+        //Do whatever drawing you want. In your case, draw your image.
+        scratchCtx.drawImage(image, 0,0);
+
+
+
+
+
+				var myStyle = {
+					strokeColor: '#00ffff',
+					fillColor: '#000000',
+					strokeWidth: 50
+				};
+
+
+
+
+        //As long as we can represent our clipping region as a single path,
+        //we can perform our clipping by using a non-default composite operation.
+        //You can think of destination-in as "write alpha". It will not touch
+        //the color channel of the canvas, but will replace the alpha channel.
+        //(Actually, it will multiply the already drawn alpha with the alpha
+        //currently being drawn - meaning that things look good where two anti-
+        //aliased pixels overlap.)
+        //
+        //If you can't represent the clipping region as a single path, you can
+        //always draw your clip shape into yet another scratch canvas.
+        scratchCtx.fillStyle = '#fff'; //color doesn't matter, but we want full opacity
+        scratchCtx.globalCompositeOperation = 'destination-in';
+        scratchCtx.beginPath();
+        scratchCtx.arc(x, y, radius, 0, 4 * Math.PI, true);
+        scratchCtx.closePath();
+        scratchCtx.fill();
+
+
+
+        return scratchCanvas;
+      }
+
+
+      var img = new Image();
+
+	//img.strokeColor = '#ff0000';
+	//img.strokeWidth = '10';
+
+      img.src = + Math.floor (1 + Math.random() * 16) + ".jpg";
+      var x = 200;
+      var y = 200;
+      var radius = 200;
+			var strokeWidth = 20;
+			var strokeColor = 'black';
+
+      function onMouseDown(event) {
+        var image = imgClip(img, x, y, radius);
+        // Load from Server:
+        var raster = new Raster(image);
+
+        // Move the image to the center of the view:
+        raster.position = event.point;
+
+
+
+	     //
+
+
+      }
+
+			function onMouseDrag(event) {
+				var delta = event.point - event.downPoint;
+					var rectangle = new Rectangle
+					(new Point(event.point,event.point),
+					new Size(delta.length,delta.height)
+
+				);
+			}
+
+
+		function onFrame(event) {
+
+		}
+
+	    // Reposition the paths whenever the window is resized:
+	    function onResize(event) {
+
+	    }
+	</script>
+</head>
+<body>
+	<canvas id="canvas" resize>
+
+	</canvas>
+    <canvas id="scratch">
+
+
+
+		</canvas>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Squares!</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script type="text/javascript" src="../../dist/paper-full.js"></script>
+    <script type="text/paperscript" canvas="canvas">
+
+    var numShapes;
+  	var shapes;
+  	var dragIndex;
+  	var dragging;
+  	var mouseX;
+  	var mouseY;
+  	var dragHoldX;
+  	var dragHoldY;
+
+
+            function onMouseDown(event) {
+                var hue = Math.random() * 360;
+                project.currentStyle.fillColor = {
+                    hue: hue,
+                    saturation: 1,
+                    brightness: 1
+                };
+            }
+
+            function onMouseDrag(event) {
+                var delta = event.point - event.downPoint;
+                var rectangle = new Rectangle
+                (new Point(delta,delta),
+                new Size(delta.length,delta.height)
+
+              );
+
+                var path = new Path.Rectangle(rectangle);{
+                dashArray: [4, 10],
+                path.strokeColor = 'black';
+                path.strokeWidth = 10;
+                path.rotate(delta.angle);
+                // Remove the path automatically before the next mouse drag
+                // event:
+                path.removeOnDrag();
+
+
+
+            }
+    </script>
+</head>
+<body>
+    <canvas id="canvas" resize></canvas>
+</body>
+</html>

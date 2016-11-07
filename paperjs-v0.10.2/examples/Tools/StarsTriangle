@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Squares!</title>
+    <link rel="stylesheet" href="../css/style.css">
+
+
+
+
+
+    <script type="text/javascript" src="../../dist/paper-full.js"></script>
+    <script type="text/paperscript" canvas="canvas">
+            function onMouseDown(event) {
+              var raster = new Raster('random');
+
+                var hue = Math.random() * 360;
+                project.currentStyle.fillColor = {
+                    hue: hue,
+                    saturation: 1,
+                    brightness: 1
+                };
+                var raster = new Raster('http://66.media.tumblr.com/tumblr_lqy87ur19F1qzot83o1_500.jpg');
+            }
+
+            function onMouseDrag(event) {
+              var delta = event.point - event.downPoint;
+                var Triangle = new Path.RegularPolygon
+                (new Point(delta,delta),delta,delta.
+                new Size(delta.length,delta.height)
+              );
+
+                var path = new Path.Rectangle(rectangle);
+                    selected:true;
+                path.bounds.selected = true;
+                path.strokeColor = 'black';
+                path.strokeWidth = '40';
+                path.dashArray = [10,12]
+                path.rotate(delta.angle);
+                // Remove the path automatically before the next mouse drag
+                // event:
+                path.removeOnDrag();
+                path.opacity = 1.0;
+
+                if (hitResult) {
+                    path = hitResult.item;
+                    if (hitResult.type == 'segment') {
+                        segment = hitResult.segment;
+                    } else if (hitResult.type == 'stroke') {
+                        var location = hitResult.location;
+                        segment = path.insert(location.index + 1, event.point);
+                        path.smooth();
+                    }
+                }
+
+            }
+window.app = {
+
+}
+
+    </script>
+</head>
+  <body onload="gameLoop()" onkeydown="" onkeyup="" bgcolor='white'>
+<a href="#"onclick="activatecircles">Triangles</a>
+<a href="#"onclick="activatecircles">Squares</a>
+<a href="#" onclick="activatecircles">Circles</a>
+
+        <canvas id="canvas" resize>
+
+
+
+
+
+
+
+
+    </canvas>
+</body>
+</html>
